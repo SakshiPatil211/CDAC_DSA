@@ -18,6 +18,14 @@ public class TestSinglyLinkedList {
 		System.out.println();
 		sll.addAtGivenValue(16,12);
 		sll.displayData();
+		
+		System.out.println();
+		sll.deleteByValue(1);
+		sll.displayData();
+		
+		System.out.println();
+		sll.deleteByPosition(1);
+		sll.displayData();
 
 	}
 
