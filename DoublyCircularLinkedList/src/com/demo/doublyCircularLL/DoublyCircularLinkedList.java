@@ -1,0 +1,192 @@
+package com.demo.doublyCircularLL;
+
+public class DoublyCircularLinkedList {
+	Node head;
+	class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		public Node(int data) {
+			this.data = data;
+			next = null;
+			prev = null;
+		}
+	}
+	public DoublyCircularLinkedList() {
+		head = null;
+	}
+	
+	//add node at last
+	public void addNode(int value) {
+		Node newNode = new Node(value);
+		
+		if(head == null) {
+			head = newNode;
+			newNode.prev = head;
+			newNode.next = head;
+		}else {
+			Node temp = head;
+			while(temp.next!=head) {
+				temp = temp.next;
+			}
+			newNode.next = temp.next;
+			head.prev = newNode;
+			newNode.prev = temp;
+			temp.next = newNode;
+		}
+	}
+
+	//display data
+	public void displayData() {
+		Node temp = head;
+		if(head == null) {
+			System.out.println("List is empty");
+		}else {
+			while(temp.next!= head) {
+				System.out.print(temp.data+ "--->");
+				temp = temp.next;
+			}
+			System.out.print(temp.data+ "---> head");
+			System.out.println();
+		}
+		
+	}
+
+	//add by position
+	public void addByPosition(int pos, int value) {
+		Node newNode = new Node(value);
+		Node temp = head;
+		
+		if(pos == 1) {
+			Node tail = head;
+			while(tail.next!=head) {
+				tail = tail.next;
+			}
+			newNode.next = temp;
+			temp.prev = newNode;
+			newNode.prev = tail;
+			tail.next = newNode;
+			head = newNode;
+		}else {
+			int i=0;
+			for(; i<pos-2 && temp.next!=head; i++) {
+				temp = temp.next;
+			}
+			if(i==pos-2) {
+				newNode.prev = temp;
+				newNode.next = temp.next;
+				temp.next = newNode;
+				newNode.next.prev = newNode;                                           
+			}else {
+				System.out.println(pos + "position not found");
+			}
+		}
+	}
+
+	//add by value
+	public void addByValue(int value, int num) {
+		Node newNode = new Node(num);
+		Node temp = head;
+		
+		if(head.data == value) {
+			newNode.prev = head;
+			newNode.next = head.next;
+			head.next.prev = newNode;
+			head.next = newNode;
+		}else {
+			while(temp.data != value && temp.next != head) {
+				temp = temp.next;
+			}
+			if(temp.data == value) {
+				newNode.prev = temp;
+				newNode.next = temp.next;
+				temp.next.prev = newNode;
+				temp.next = newNode;
+			}else {
+				System.out.println("Not found");
+			}
+		}
+		
+	}
+	
+	//delete By position
+	public void deleteByPosition(int pos) {
+		Node temp = head;
+		
+		if(head == null) {
+			System.out.println("List is empty");
+		}else {
+			if(pos == 1) {
+				Node tail = head;
+				while(tail.next!=head) {
+					tail = tail.next;
+				}
+				if(tail == head) {
+					head.next = null;
+					head.prev = null;
+					head = null;
+					
+				}else {
+					temp.next = head.next;
+					head.next.prev = temp;
+					head.next = null;
+					head.prev = null;
+					head = temp.next;
+				}
+			}else {
+				int i=0;
+				for(;i<pos-1 && temp.next!=head; i++) {
+					temp = temp.next;
+				}
+				if(i== pos-1) {
+					temp.prev.next = temp.next;
+					temp.next.prev = temp.prev;
+					temp.next = null;
+					temp.prev = null;
+				}else {
+					System.out.println(pos + " position not found");
+				}
+				
+			}
+		}
+	}
+
+	//delete by value
+	public void deleteByValue(int value) {
+		Node temp = head;
+		if(head == null) {
+			System.out.println("list is empty");
+		}else {
+			if(head.data == value) {
+				while(temp.next != head) {
+					temp = temp.next;
+				}
+				temp.next = head.next;
+				head.next.prev = temp;
+				head.next = null;
+				head.prev = null;
+				head = temp.next;
+			}else {
+				while(temp.data!=value && temp.next!=head) {
+					temp = temp.next;
+				}
+				if(temp.data == value) {
+					temp.next.prev = temp.prev;
+					temp.prev.next = temp.next;
+					temp.next = null;
+					temp.prev = null;
+				}else {
+					System.out.println("value not found");
+				}
+			}
+		}
+		
+	}
+
+	//reverse ll
+	public void reverseDCLL() {
+		                                                                                                                                             
+		
+	}
+}
