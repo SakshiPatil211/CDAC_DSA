@@ -26,6 +26,7 @@ public class MyGraph {
 		}
 	}
 
+	//DFS  
 	public void dfsTraversal(int start) {
 		boolean[] visited = new boolean[graph.length];
 		for(int i=0;i<graph.length;i++) {
@@ -56,6 +57,7 @@ public class MyGraph {
 		System.out.println("DFS " +  dfs);
 	}
 
+	//BFS
 	public void bfsTraversal(int start) {
 		boolean[] visited = new boolean[graph.length];
 		for(int i=0;i<graph.length;i++) {
