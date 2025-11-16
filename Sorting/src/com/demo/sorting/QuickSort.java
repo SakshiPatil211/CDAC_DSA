@@ -19,18 +19,17 @@ public class QuickSort {
 				arr[i] = arr[j];
 				arr[j] = temp;
 			}
-			
-			// Swap j with pivot
-			if(pivot != j) {
-				// Swap only if j and pivot are not at same position
-				int temp = arr[pivot];
-				arr[pivot] = arr[j];
-				arr[j] = temp;
-			}
-			System.out.println(Arrays.toString(arr));
-			System.out.println("Pivot Position : " + j + " Pivot Number : " + arr[j]);
-			System.out.println(arr[j] + " Swapped With " + arr[pivot]);
 		}
+		// Swap j with pivot
+		if(pivot != j) {
+		// Swap only if j and pivot are not at same position
+			int temp = arr[pivot];
+			arr[pivot] = arr[j];
+			arr[j] = temp;
+		}
+		System.out.println(Arrays.toString(arr));
+		System.out.println("Pivot Position : " + j + " Pivot Number : " + arr[j]);
+		System.out.println(arr[j] + " Swapped With " + arr[pivot]);		
 		return j;
 	}
 	
