@@ -30,6 +30,7 @@ public class DoublyCircularLinkedList {
 			while(temp.next!=head) {
 				temp = temp.next;
 			}
+			//Node temp = head.prev;
 			newNode.next = temp.next;
 			head.prev = newNode;
 			newNode.prev = temp;
@@ -49,37 +50,46 @@ public class DoublyCircularLinkedList {
 			}
 			System.out.print(temp.data+ "---> head");
 			System.out.println();
+
+			/*
+			Node temp = head;
+			do{
+				System.out.print(temp.data+ "--->");
+				temp = temp.next;
+			}while(temp != head);
+			*/
 		}
-		
 	}
 
 	//add by position
 	public void addByPosition(int pos, int value) {
 		Node newNode = new Node(value);
 		Node temp = head;
-		
-		if(pos == 1) {
-			Node tail = head;
-			while(tail.next!=head) {
-				tail = tail.next;
-			}
-			newNode.next = temp;
-			temp.prev = newNode;
-			newNode.prev = tail;
-			tail.next = newNode;
-			head = newNode;
-		}else {
-			int i=0;
-			for(; i<pos-2 && temp.next!=head; i++) {
-				temp = temp.next;
-			}
-			if(i==pos-2) {
-				newNode.prev = temp;
-				newNode.next = temp.next;
+
+		if(head == null){
+			System.out.println("List is empty--->");
+		}else{
+			if(pos == 1) {
+				Node temp = head.prev;
 				temp.next = newNode;
-				newNode.next.prev = newNode;                                           
+				newNode.prev = temp;
+				newNode.next = head;
+				head.prev = newNode;
+				head = newNode;
 			}else {
-				System.out.println(pos + "position not found");
+				Node temp = head;
+				int i=0;
+				for(; i<pos-2 && temp.next!=head; i++) {
+					temp = temp.next;
+				}
+				if(i==pos-2) {
+					newNode.prev = temp;
+					newNode.next = temp.next;
+					temp.next = newNode;
+					newNode.next.prev = newNode;                                           
+				}else {
+					System.out.println(pos + "position not found");
+				}
 			}
 		}
 	}
