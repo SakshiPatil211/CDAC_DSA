@@ -2,6 +2,7 @@ package com.demo.serach;
 
 public class SearchingService {
 
+	//linear search
 	public static int sequentialSearch(int[] arr, int value) {
 		for(int i=0;i<arr.length;i++) {
 			if(value == arr[i]) {
@@ -11,6 +12,7 @@ public class SearchingService {
 		return -1;
 	}
 
+	//binary search on number iterative
 	public static int binarySerachNonRecursive(int[] arr, int value) {
 		
 		int low = 0;
@@ -34,6 +36,7 @@ public class SearchingService {
 		return -1;
 	}
 
+	//binary search on number recursive
 	public static int binarySerachRecursive(int[] arr1, int value, int low, int high) {
 		System.out.println("Binary serach called " + low + " " + high);
 		
@@ -51,21 +54,41 @@ public class SearchingService {
 		return -1;
 	}
 
+	//binary search on string recursive
 	public static int binarySerachOnString(String[] str, String search, int low, int high) {
 		System.out.println("Binary search called " + low + " " + high);
+		while(low > high) {
+			return -1;
+		}
+		int mid = (low+high)/2;
+		int pos = search.compareTo(str[mid]);
+		if(pos == 0) {
+			return mid;
+		}else if(pos<0) {
+			return binarySerachOnString(str,search,low,mid-1);
+		}else if(pos>0) {
+			return binarySerachOnString(str,search,mid+1, high);
+		}
+	}
+
+	//binary search on string iterative
+	public static int binarySerachOnStringIterative(String[] str, String search) {
+		int low - 0;
+		int high = str.length;
 		
 		while(low<=high) {
 			int mid = (low+high)/2;
-			int pos = search.compareTo(arr[mid]);
+			int pos = search.compareTo(str[mid]);
 			if(pos == 0) {
 				return mid;
 			}else if(pos<0) {
-				return binarySerachOnString(str,search,low,mid-1);
+				high = mid-1;
 			}else if(pos>0) {
-				return binarySerachOnString(str,search,mid+1, high);
+				low = mid+1;
 			}
 		}
-		return 0;
+
+		return -1;
 	}
 	
 
