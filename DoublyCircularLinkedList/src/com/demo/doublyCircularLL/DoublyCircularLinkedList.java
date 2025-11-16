@@ -99,25 +99,17 @@ public class DoublyCircularLinkedList {
 		Node newNode = new Node(num);
 		Node temp = head;
 		
-		if(head.data == value) {
-			newNode.prev = head;
-			newNode.next = head.next;
-			head.next.prev = newNode;
-			head.next = newNode;
-		}else {
-			while(temp.data != value && temp.next != head) {
-				temp = temp.next;
-			}
-			if(temp.data == value) {
-				newNode.prev = temp;
-				newNode.next = temp.next;
-				temp.next.prev = newNode;
-				temp.next = newNode;
-			}else {
-				System.out.println("Not found");
-			}
+		while(temp.data != value && temp.next != head) {
+			temp = temp.next;
 		}
-		
+		if(temp.data == value) {
+			newNode.prev = temp;
+			newNode.next = temp.next;
+			temp.next.prev = newNode; //temp.next = newNode;
+			temp.next = newNode; //newNode.next.prev = newNode;
+		}else {
+			System.out.println("Not found");
+		}
 	}
 	
 	//delete By position
@@ -127,22 +119,23 @@ public class DoublyCircularLinkedList {
 		if(head == null) {
 			System.out.println("List is empty");
 		}else {
+			Node tail = head.prev;
 			if(pos == 1) {
-				Node tail = head;
-				while(tail.next!=head) {
-					tail = tail.next;
-				}
+				// Node tail = head;
+				// while(tail.next!=head) {
+				// 	tail = tail.next;
+				// }
 				if(tail == head) {
 					head.next = null;
 					head.prev = null;
 					head = null;
 					
 				}else {
-					temp.next = head.next;
-					head.next.prev = temp;
+					tail.next = head.next;
+					head.next.prev = tail;
+					head =head.next;
 					head.next = null;
 					head.prev = null;
-					head = temp.next;
 				}
 			}else {
 				int i=0;
