@@ -157,20 +157,25 @@ public class DoublyCircularLinkedList {
 
 	//delete by value
 	public void deleteByValue(int value) {
-		Node temp = head;
 		if(head == null) {
 			System.out.println("list is empty");
 		}else {
+			Node tail = head.prev;
 			if(head.data == value) {
-				while(temp.next != head) {
-					temp = temp.next;
+				// while(temp.next != head) {
+				// 	temp = temp.next;
+				// }
+				if(tail == head){
+					head = null;
+				}else{
+					tail.next = head.next;
+					head.next.prev = tail;
+					head = tail.next;
+					head.next = null;
+					head.prev = null;
 				}
-				temp.next = head.next;
-				head.next.prev = temp;
-				head.next = null;
-				head.prev = null;
-				head = temp.next;
 			}else {
+				Node temp = head;
 				while(temp.data!=value && temp.next!=head) {
 					temp = temp.next;
 				}
@@ -189,7 +194,10 @@ public class DoublyCircularLinkedList {
 
 	//reverse ll
 	public void reverseDCLL() {
-		                                                                                                                                             
-		
+	    Node temp = head;
+		do{
+			System.out.print(temp.prev.data +" ");
+			temp = temp.prev;
+		}while(temp!=head);
 	}
 }
