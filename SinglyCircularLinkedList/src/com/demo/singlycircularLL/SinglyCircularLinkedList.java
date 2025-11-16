@@ -16,6 +16,7 @@ public class SinglyCircularLinkedList {
 		head=null;
 	}
 	
+	// add at end
 	public void addNode(int val) {
 		Node newNode=new Node(val);
 		if(head==null) {
@@ -32,6 +33,7 @@ public class SinglyCircularLinkedList {
 		newNode.next=head;
 	}
 	
+	// add by position
 	public void addByPosition(int pos,int val) {
 		if(head==null) {
 			System.out.println("list is empty");
@@ -65,6 +67,7 @@ public class SinglyCircularLinkedList {
 		}
 	}
 	
+	// add by value
 	public void addByValue(int val, int num) {
 		Node newNode=new Node(val);
 		if(head.data==num) {
@@ -84,6 +87,7 @@ public class SinglyCircularLinkedList {
 		}
 	}
 	
+	// delete by position
 	public void delteByPosition(int pos) {
 		if(head==null) {
 			System.out.println("list is empty");
@@ -121,6 +125,7 @@ public class SinglyCircularLinkedList {
 		}
 	}
 	
+	// delete by value
 	public void deleteByValue(int val) {
 		if(head==null) {
 			System.out.println("list is empty");
@@ -159,6 +164,7 @@ public class SinglyCircularLinkedList {
 		}
 	}
 	
+	// display data
 	public void displayData() {
 		if(head==null) {
 			System.out.println("list is empty");
