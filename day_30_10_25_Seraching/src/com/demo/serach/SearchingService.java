@@ -56,11 +56,12 @@ public class SearchingService {
 		
 		while(low<=high) {
 			int mid = (low+high)/2;
-			if(str[mid].equals(search)) {
+			int pos = search.compareTo(arr[mid]);
+			if(pos == 0) {
 				return mid;
-			}else if(str[mid].equals(search)) {
+			}else if(pos<0) {
 				return binarySerachOnString(str,search,low,mid-1);
-			}else if(str[mid].equals(search)) {
+			}else if(pos>0) {
 				return binarySerachOnString(str,search,mid+1, high);
 			}
 		}
